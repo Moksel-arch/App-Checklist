@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>App Inspection Checklist & Feedback Tool</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" type="image/x-icon" href="assets/Favicon.jpg">
+
+  <!-- jQuery + DataTables + Buttons -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>📋 App Inspection Checklist & Feedback</h1>
+
+    <!-- Inspector Details -->
+    <div class="inspector-info">
+      <input type="text" id="inspector-name" placeholder="Inspector Name" required>
+      <input type="url" id="app-link" placeholder="App Link[](https://...)" required>
+    </div>
+
+    <!-- Checklist Section -->
+    <section class="checklist">
+      <h2>Inspection Checklist</h2>
+      <form id="checklist-form">
+        <!-- Collapsible Functionality -->
+        <button type="button" class="accordion">Functionality</button>
+        <div class="panel">
+          <div class="checklist-item" data-category="Functionality">
+            <label><input type="checkbox"> Core features working as intended</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+          <div class="checklist-item" data-category="Functionality">
+            <label><input type="checkbox"> Input validation enforced</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+          <div class="checklist-item" data-category="Functionality">
+            <label><input type="checkbox"> App meets project goals</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+        </div>
+
+        <!-- Collapsible UX -->
+        <button type="button" class="accordion">UX / Accessibility</button>
+        <div class="panel">
+          <div class="checklist-item" data-category="UX">
+            <label><input type="checkbox"> UI responsive across devices</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+          <div class="checklist-item" data-category="UX">
+            <label><input type="checkbox"> Accessibility standards met</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+          <div class="checklist-item" data-category="UX">
+            <label><input type="checkbox"> Cross-browser compatibility tested</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+        </div>
+
+        <!-- Collapsible Performance -->
+        <button type="button" class="accordion">Performance</button>
+        <div class="panel">
+          <div class="checklist-item" data-category="Performance">
+            <label><input type="checkbox"> App loads quickly</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+          <div class="checklist-item" data-category="Performance">
+            <label><input type="checkbox"> API calls optimized</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+        </div>
+
+        <!-- Collapsible Security -->
+        <button type="button" class="accordion">Security</button>
+        <div class="panel">
+          <div class="checklist-item" data-category="Security">
+            <label><input type="checkbox"> Authentication & authorization implemented</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+          <div class="checklist-item" data-category="Security">
+            <label><input type="checkbox"> HTTPS enforced</label>
+            <select class="severity"><option>Minor</option><option>Major</option><option>Critical</option></select>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Feedback -->
+    <section class="feedback">
+      <h2>Feedback</h2>
+      <textarea id="feedback-text" rows="5" placeholder="Enter your feedback..."></textarea>
+    </section>
+
+    <!-- Buttons -->
+    <div class="actions">
+      <button id="submit-btn">Submit</button>
+      <button id="clear-btn">Clear</button>
+      <button id="restart-btn">Restart Inspection</button>
+    </div>
+
+    <!-- Results Table -->
+    <section class="results">
+      <h2>Submitted Results</h2>
+      <table id="results-table" class="display nowrap" style="width:100%">
+        <thead>
+          <tr>
+            <th>Inspector</th>
+            <th>Timestamp</th>
+            <th>App Link</th>
+            <th>Category</th>
+            <th>Checklist Item</th>
+            <th>Status</th>
+            <th>Severity</th>
+            <th>Feedback</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <th colspan="8" id="summary-row">Summary will appear here...</th>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <!-- Recommendations Section
+    <section class="recommendations">
+      <h2>Automatic Recommendations</h2>
+      <ul id="recommendations-list"></ul>
+    </section>
+  </div> -->
+
+  <script src="script.js"></script>
+</body>
+</html>
