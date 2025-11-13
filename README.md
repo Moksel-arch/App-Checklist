@@ -9,3 +9,7 @@ Accordion Interface: Collapsible sections for organized checklist navigation.
 Summary Statistics: View counts of passed/failed items and severity levels in the table footer.
 Responsive Design: Mobile-friendly interface with clean, modern styling.
 Form Controls: Submit results, clear the form, or restart the inspection process.
+
+
+app-checklist-and-feedback.netlify.app
+
