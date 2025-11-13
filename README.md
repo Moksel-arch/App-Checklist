@@ -11,5 +11,4 @@ Responsive Design: Mobile-friendly interface with clean, modern styling.
 Form Controls: Submit results, clear the form, or restart the inspection process.
 
 
-app-checklist-and-feedback.netlify.app
-
+[Project Overview](https://app.netlify.com/projects/app-checklist-and-feedback/overview)
